@@ -4,7 +4,7 @@ def get_config():
         "dataset-title": "librispeech_asr",
         "dataset-link": "librispeech_asr",
         "dataset-name": "clean",
-        "HF_TOKEN": "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",
+        "HF_TOKEN": "",
         "unused_columns": ['speaker_id', 'chapter_id', 'id', 'file'],
         "batch_size": 5,
         "input_dim": 64,
