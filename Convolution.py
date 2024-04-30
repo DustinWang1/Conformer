@@ -3,21 +3,6 @@ from Modules import Transpose
 
 
 class Conv2dSubsampling(nn.Module):
-    """
-    Convolutional 2D subsampling (to 1/4 length)
-
-    Args:
-        in_channels (int): Number of channels in the input image
-        out_channels (int): Number of channels produced by the convolution
-
-    Inputs: inputs
-        - **inputs** (batch, dim, time): Tensor containing sequence of inputs
-
-    Returns: outputs, output_lengths (REDACTED UNTIL USEFUL)
-        - **outputs** (batch, time, dim): Tensor produced by the convolution
-        - **output_lengths** (batch): list of sequence output lengths
-    """
-
     def __init__(self, in_channels, out_channels) -> None:
         super().__init__()
         self.convSeq = nn.Sequential(

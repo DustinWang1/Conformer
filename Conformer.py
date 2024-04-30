@@ -81,6 +81,7 @@ class Conformer(nn.Module):
 
     def __init__(self, input_dim: int, model_dim: int,
                  num_classes: int,
+                 device: str,
                  linear_expansion_factor: int = 4,
                  conv_expansion_factor: int = 2,
                  half_step_residual: bool = True,
@@ -91,6 +92,7 @@ class Conformer(nn.Module):
                  ):
         super().__init__()
 
+        self.device = device
         self.model_dim = model_dim
         self.encoder = Encoder(input_dim, model_dim, dropout)
         self.layers = nn.ModuleList([ConformerBlock(
@@ -110,7 +112,7 @@ class Conformer(nn.Module):
     def forward(self, x, input_lengths):
         x, output_lengths = self.encoder(x, input_lengths)
 
-        freqs_complex = precompute_theta_freqs(self.model_dim, x.size(1), "cpu")
+        freqs_complex = precompute_theta_freqs(self.model_dim, x.size(1), self.device)
 
         for layer in self.layers:
             x = layer(x, freqs_complex)

@@ -67,10 +67,11 @@ def main(config):
     valid_dl = DataLoader(valid_ds, batch_size=config["batch_size"], shuffle=False, collate_fn=lambda x: data_processing(x, 'train'))
     test_dl = DataLoader(test_ds, batch_size=config["batch_size"], shuffle=False, collate_fn=lambda x: data_processing(x, 'train'))
 
-    conformer = Conformer(config["input_dim"], config["model_dim"], len(vocab_dict))
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    conformer = Conformer(config["input_dim"], config["model_dim"], len(vocab_dict), device=device)
     model = LitAuto(conformer)
 
-    trainer = L.Trainer(max_epochs=20, log_every_n_steps=5, callbacks=[ModelSummary(max_depth=3)])
+    trainer = L.Trainer(max_epochs=20, callbacks=[ModelSummary(max_depth=3)])
     trainer.fit(model, train_dataloaders=train_dl, val_dataloaders=valid_dl)
 
 
