@@ -5,7 +5,6 @@ from torch.utils.data import Dataset, DataLoader
 import random
 from datasets import load_dataset, load_metric, Audio
 import config
-import simpleaudio as sa
 import numpy as np
 import matplotlib.pyplot as plt
 import librosa
@@ -157,12 +156,12 @@ class CustomDataset(Dataset):
 
 def get_datasets():
     # Load and prepare dataset
-    librispeech_train = load_dataset(config["dataset-link"], name=config["dataset-name"], split="train.100",
-                                     token=config["HF_TOKEN"], trust_remote_code=True).select(range(100))
+    librispeech_train = load_dataset(config["dataset-link"], name=config["dataset-name"], split="train.360",
+                                     token=config["HF_TOKEN"], trust_remote_code=True)
     librispeech_valid = load_dataset(config["dataset-link"], name=config["dataset-name"], split="validation",
-                                     token=config["HF_TOKEN"], trust_remote_code=True).select(range(100))
+                                     token=config["HF_TOKEN"], trust_remote_code=True)
     librispeech_test = load_dataset(config["dataset-link"], name=config["dataset-name"], split="test",
-                                    token=config["HF_TOKEN"], trust_remote_code=True).select(range(100))
+                                    token=config["HF_TOKEN"], trust_remote_code=True)
 
     # Remove unused data
     librispeech_train = librispeech_train.remove_columns(config["unused_columns"])
