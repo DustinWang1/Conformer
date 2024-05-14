@@ -15,6 +15,6 @@ def get_config():
         "PAD": 28,
         "BLANK": 27,
         "learning_rate": 5e-4,
-        "max_epochs": 15
+        "max_epochs": 30
     }
 

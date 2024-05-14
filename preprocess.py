@@ -27,13 +27,6 @@ def text_to_int(batch, vocab_dict):
     batch["text"] = torch.tensor(translation)
     return batch
 
-def int_to_text(labels, vocab_dict):
-    string = []
-    for i in labels:
-        string.append(vocab_dict[i])
-    # return joins all values in the array with no separation.
-    return ''.join(string).replace('', ' ')
-
 def normalizeText(batch):
     chars_to_remove_regex = '[\,\?\.\!\-\;\:\"\“\%\‘\”\�\'\»\«]'
     batch["text"] = re.sub(chars_to_remove_regex, '', batch["text"]).lower()
