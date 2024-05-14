@@ -1,4 +1,5 @@
 DEPENDENCIES:
-Pytorch,
 Einops,
-Pytorch Lightning
+Pytorch Lightning,
+datasets
+
